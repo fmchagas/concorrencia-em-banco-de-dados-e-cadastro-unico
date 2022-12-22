@@ -1,0 +1,21 @@
+version: '3'
+
+networks:
+  default:
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.10.9.0/24
+
+services:
+  postgres:
+    image: 'postgres:alpine'
+    volumes:
+      - postgres-volume:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: supremo_car
+volumes:
+  postgres-volume:
